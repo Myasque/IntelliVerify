@@ -9,6 +9,7 @@ openai.api_key = os.environ["OPENAI"]
 
 CONTINUE = True
 
+
 def chat(system, user_assistant):
     assert isinstance(system, str), "`system` should be a string"
     assert isinstance(user_assistant, list), "`user_assistant` should be a list"
@@ -24,10 +25,12 @@ def chat(system, user_assistant):
     assert status_code == "stop", f"The status code was {status_code}."
     return response["choices"][0]["message"]["content"]
 
+
 print("Welcome to IntelliVerify, enter 'EXIT' to exit.")
 while CONTINUE:
     question = input("\nPlease enter your question: ")
-    if question == 'EXIT': CONTINUE = False
+    if question == 'EXIT':
+        CONTINUE = False
     else:
         response = chat("You are very knowledgeable.", [question])
-        print("ChatGPT: ", response,"\n")
+        print("ChatGPT: ", response, "\n")
